@@ -1,0 +1,14 @@
+Aplikasi ini menggunakan sistem Atomic design. Penjelasan sekilas tentang Atomic design:  
+
+Atomic design: adalah sebuah tahapan dengan 5 metode yang berguna untuk merancang sebuah design. Tahapan nya sebagai berikut:
+   a. Atoms     :  Bagian paling kecil seperti, input, button, label, dll. Setiap folder yang ada pada folder atoms, terdapat sebuah file Index.js. Nah file berguna untuk mengumpulkan semua component yang ada di folder tersebut. 
+
+   b: Molecules :  Kumpulan dari atoms seperti input email ( terdiri dari input dan label )
+
+   c. Organisms :  Kumpulan dari molecules seperti form login (terdiri dari input email, input pasword dan button)
+
+   d. Tempaltes : Kumpulan dari organism atau bisa dibilng kumpulan semua tahapan sebelum nya.
+
+   e. Pages     : Sebuah tempalet yang dijadikan sebgaia halaman.
+
+silahkan pelajari lebih lanjut tentang atomic design di google
