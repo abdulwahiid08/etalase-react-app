@@ -12,6 +12,7 @@ const ProductPage = () => {
     handleOnAddCart,
     handleOnLogout,
     totalPriceRef,
+    handleDeleteCart,
   } = useProductHook();
 
   return (
@@ -36,6 +37,7 @@ const ProductPage = () => {
                 </CardProduct.BodyCard>
                 <CardProduct.FooterCard
                   price={data.price}
+                  handleDeleteCart={handleDeleteCart}
                   handleOnAddCart={handleOnAddCart}
                   id={data.id}
                 />
@@ -62,7 +64,7 @@ const ProductPage = () => {
                     (product) => product.id === item.id
                   );
                   return (
-                    <tr key={item.id}>
+                    <tr key={item.id} className="mb-4">
                       <td>{idx + 1}</td>
                       <td>{dataProduct.title}</td>
                       <td>Rp.{dataProduct.price.toLocaleString("id-ID")}</td>

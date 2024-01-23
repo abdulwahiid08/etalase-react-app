@@ -9,7 +9,7 @@ import App from "./views/App";
 import AuthLogin from "./views/pages/Auth/authLogin";
 import AuthRegister from "./views/pages/Auth/authRegister";
 import ErrorPage from "./views/pages/error/404";
-import ProductPage from "./views/pages/Product";
+import ProductPage from "./views/pages/product";
 
 // MENDEFINISIKAN ROUTER
 const router = createBrowserRouter([
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
 // ========= RENDER REACT DOM ==============
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* Menampilkan halaman sesuia dengan path yang di akases */}
+    {/* Menampilkan halaman sesuai dengan path yang di akases */}
     <RouterProvider router={router} />
     {/* <App /> */}
   </React.StrictMode>

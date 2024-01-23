@@ -1,3 +1,5 @@
+import ButtonAdd from "../atoms/button/ButtonAdd";
+import ButtonDelete from "../atoms/button/ButtonKurang";
 import Button from "../atoms/button/ButtonSubmit";
 
 const CardProduct = (props) => {
@@ -40,15 +42,18 @@ const BodyCard = (props) => {
 
 // Component Footer
 const FooterCard = (props) => {
-  const { price, handleOnAddCart, id } = props;
+  const { id, price, handleOnAddCart, handleDeleteCart } = props;
   return (
     <div className="flex items-center justify-between px-5 pb-5">
       <span className="text-lg font-bold text-white">
         Rp. {price.toLocaleString("id-ID")}
       </span>
-      <Button variant="bg-blue-600" onClick={() => handleOnAddCart(id)}>
-        Add To Cart
-      </Button>
+      <ButtonDelete variant="bg-red-600" onClick={() => handleDeleteCart(id)}>
+        -
+      </ButtonDelete>
+      <ButtonAdd variant="bg-blue-600" onClick={() => handleOnAddCart(id)}>
+        +
+      </ButtonAdd>
     </div>
   );
 };

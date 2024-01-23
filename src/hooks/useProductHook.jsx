@@ -48,7 +48,7 @@ const useProductHook = () => {
   const totalPriceRef = useRef();
 
   // === KUMPULAN USE EFFECT ===
-  // Get User
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     // Cek Token
@@ -61,15 +61,10 @@ const useProductHook = () => {
 
   // setCart langsung memiliki data
   useEffect(() => {
-    // setCart([
-    //   {
-    //     id: 1,
-    //     qty: 1,
-    //   },
-    // ]);
-
-    // SAVE AT LOCAL STORAGE
-    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+    const cartItem = JSON.parse(localStorage.getItem("cart"));
+    const newItem = cartItem.filter((val) => val.qty !== 0); // Cek qty yang tidak sama dengan 0
+    // SAVE AND GET AT LOCAL STORAGE
+    setCart(newItem || []);
   }, []);
 
   // SUM Total price
@@ -88,7 +83,13 @@ const useProductHook = () => {
     }
   }, [Cart, Product]);
 
-  // Manipulasi DOM Menggunak useRef
+  // useEffect(() => {
+  //   // let cartItem = JSON.parse(localStorage.getItem("cart"));
+  //   const newItem = Cart.filter((val) => val.qty !== 0);
+  //   localStorage.setItem("cart", JSON.stringify(Cart));
+  // }, []);
+
+  // Manipulasi DOM Menggunakan useRef
   useEffect(() => {
     if (Cart.length > 0) {
       totalPriceRef.current.style.display = "table-row";
@@ -100,20 +101,37 @@ const useProductHook = () => {
   // === KUMPULAN HANDLE ===
   // Handle Button Add Cart, Handle ini akan berjalan jika button di klik
   const handleOnAddCart = (id) => {
-    // MEMBUAT QUANTITY BERTAMBAH JIKA DIKLIK
+    // JIKA PRODUK yang diklik sudah ada, maka cart akan mencari produk yang sesuai dengan id nya dan akan menambah qty nya.
     if (Cart.find((data) => data.id === id)) {
-      setCart(
-        Cart.map((item) =>
-          item.id === id ? { ...item, qty: item.qty + 1 } : item
-        )
+      // MEMBUAT QUANTITY BERTAMBAH JIKA DIKLIK
+      const increamentQty = Cart.map((item) =>
+        item.id === id ? { ...item, qty: item.qty + 1 } : item
       );
+
+      setCart(increamentQty);
     } else {
+      // JIKA PRODUK yang diklik belum ada, maka setCart awal berisikan id yang diklik dan qty 1
       setCart([...Cart, { id: id, qty: 1 }]);
     }
     // setTotalPrice(TotalPrice + 1);
   };
 
-  // Handle button logout
+  // Delete Cart
+  const handleDeleteCart = (id) => {
+    // alert(id);
+    if (Cart.find((data) => data.id === id)) {
+      const decrementQty = Cart.map((item) =>
+        item.id === id ? { ...item, qty: item.qty - 1 } : item
+      );
+
+      setCart(decrementQty);
+    }
+  };
+
+  /**
+   * Handle button logout
+   * Removes token from local storage and navigates to the home page.
+   */
   const handleOnLogout = () => {
     localStorage.removeItem("token");
     navigation("/");
@@ -142,6 +160,7 @@ const useProductHook = () => {
     handleOnAddCart,
     handleOnLogout,
     totalPriceRef,
+    handleDeleteCart,
   };
 };
 
