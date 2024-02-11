@@ -3,6 +3,9 @@ import FormLoginOrganism from "../../component/organisms/FormAuth/FormLogin";
 import { useEffect } from "react";
 
 function AuthLogin(props) {
+  useEffect(() => {
+    document.title = props.title;
+  }, [props.title]);
   return (
     <div className="flex justify-center min-h-screen items-center gap-x-3">
       <div className="w-full max-w-xs">

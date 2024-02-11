@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../services/axios.service";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const useAuthLoginHook = () => {
+  const navigation = useNavigate();
   const [LoginForm, setLoginForm] = useState([]);
   const [LoginFormFailed, setLoginFormFailed] = useState("");
+  const [Username, setUsername] = useState("");
+
+  // Check Token ada atau tidak
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    // Cek Token
+    if (token) {
+      setUsername(getUser(token));
+    } else {
+      navigation("/");
+    }
+  }, []);
 
   const login = async (data, callback) => {
     await api
@@ -45,6 +59,7 @@ const useAuthLoginHook = () => {
     login,
     handleValueInput,
     getUser,
+    Username,
   };
 };
 

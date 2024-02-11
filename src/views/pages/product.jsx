@@ -3,17 +3,22 @@ import Button from "../component/atoms/button/ButtonSubmit";
 import CardProduct from "../component/organisms/CardProduct";
 import useProductHook from "../../hooks/useProductHook";
 
-const ProductPage = () => {
+const ProductPage = ({ title }) => {
   const {
     Product,
     Cart,
     TotalPrice,
     Username,
-    handleOnAddCart,
+    // handleOnAddCart,
+    // handleDeleteCart,
     handleOnLogout,
     totalPriceRef,
-    handleDeleteCart,
   } = useProductHook();
+
+  // Define Title Pages
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   return (
     <>
@@ -31,15 +36,16 @@ const ProductPage = () => {
                 <CardProduct.HeaderCard
                   sourceImg={data.image}
                   altImg={data.category}
+                  idProduct={data.id}
                 />
                 <CardProduct.BodyCard titleBodyCard={data.title}>
                   {data.description}
                 </CardProduct.BodyCard>
                 <CardProduct.FooterCard
                   price={data.price}
-                  handleDeleteCart={handleDeleteCart}
-                  handleOnAddCart={handleOnAddCart}
                   id={data.id}
+                  // handleDeleteCart={handleDeleteCart}
+                  // handleOnAddCart={handleOnAddCart}
                 />
               </CardProduct>
             ))}
@@ -58,7 +64,7 @@ const ProductPage = () => {
             </thead>
             <tbody>
               {Product.length > 0 &&
-                Cart.map((item, idx) => {
+                Cart.filter((val) => val.qty !== 0).map((item, idx) => {
                   // Mencari data product di dalam Array Product
                   const dataProduct = Product.find(
                     (product) => product.id === item.id
