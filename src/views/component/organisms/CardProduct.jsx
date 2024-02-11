@@ -51,7 +51,7 @@ const FooterCard = (props) => {
     // handleOnAddCart,
     // handleDeleteCart,
   } = props;
-  const dispatch = useDispatch(); // Dispatch Redux
+  const dispatch = useDispatch(); // Redux
 
   return (
     <div className="flex items-center justify-between px-5 pb-5">
