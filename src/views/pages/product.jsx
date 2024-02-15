@@ -2,17 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import Button from "../component/atoms/button/ButtonSubmit";
 import CardProduct from "../component/organisms/CardProduct";
 import useProductHook from "../../hooks/useProductHook";
+import Navbar from "../component/organisms/Navbar";
 
 const ProductPage = ({ title }) => {
   const {
     Product,
     Cart,
     TotalPrice,
-    Username,
+    totalPriceRef,
+    // Username,
     // handleOnAddCart,
     // handleDeleteCart,
-    handleOnLogout,
-    totalPriceRef,
+    // handleOnLogout,
   } = useProductHook();
 
   // Define Title Pages
@@ -22,12 +23,7 @@ const ProductPage = ({ title }) => {
 
   return (
     <>
-      <div className="flex justify-end h-20 bg-blue-700 text-white items-center px-10 font-semibold">
-        {Username}
-        <Button variant="ml-5 bg-red-600" onClick={handleOnLogout}>
-          Logout
-        </Button>
-      </div>
+      <Navbar />
       <div className="flex justify-center py-5">
         <div className="w-4/6 flex flex-wrap ms-5">
           {Product.length > 0 &&

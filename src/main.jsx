@@ -14,6 +14,7 @@ import { ProfilePage } from "./views/pages/profile";
 import DetailProductPage from "./views/pages/detailProduct";
 import { Provider } from "react-redux"; // PROVIDER REACT REDUX
 import store from "./redux/store"; // STORE REACT REDUX
+import Navbar from "./views/component/organisms/Navbar";
 
 // MENDEFINISIKAN ROUTER
 const router = createBrowserRouter([
@@ -49,6 +50,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* Redux */}
     <Provider store={store}>
+      {/* <Navbar /> */}
       {/* Menampilkan halaman sesuai dengan path yang di akases */}
       <RouterProvider router={router} />
     </Provider>

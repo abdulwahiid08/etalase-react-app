@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import api from "../services/axios.service";
-import useAuthLoginHook from "./useAuthLoginHook";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const useProductHook = () => {
@@ -9,10 +7,6 @@ const useProductHook = () => {
   const [Product, setProduct] = useState([]);
   const [TotalPrice, setTotalPrice] = useState(0);
   // const [Cart, setCart] = useState([]);
-
-  /* Hooks */
-  const navigation = useNavigate();
-  const { Username } = useAuthLoginHook(); // GET USER FROM useAuthLoginHook
 
   /** State Management Redux */
   const Cart = useSelector((state) => state.cart.data); // Mengambil data cart dari state management redux
@@ -88,15 +82,6 @@ const useProductHook = () => {
   //   }
   // };
 
-  /**
-   * Handle button logout
-   * Removes token from local storage and navigates to the home page.
-   */
-  const handleOnLogout = () => {
-    localStorage.removeItem("token");
-    navigation("/");
-  };
-
   /** GET DATA */
   const getData = async () => {
     try {
@@ -112,11 +97,11 @@ const useProductHook = () => {
     Product,
     Cart,
     TotalPrice,
-    Username,
+    totalPriceRef,
+    // Username,
     // handleOnAddCart,
     // handleDeleteCart,
-    handleOnLogout,
-    totalPriceRef,
+    // handleOnLogout,
   };
 };
 
