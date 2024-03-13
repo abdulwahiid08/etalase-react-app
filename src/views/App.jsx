@@ -10,11 +10,11 @@ function App() {
     <>
       {/* Struktur html pakai atomic design react */}
       <AuthPage title="Login" titleContent="enter">
-        <FormLoginOrganism></FormLoginOrganism>
+        <FormLoginOrganism />
       </AuthPage>
 
       <AuthPage title="Register" titleContent="make">
-        <FormRegisterOrganism></FormRegisterOrganism>
+        <FormRegisterOrganism />
       </AuthPage>
 
       {/* <div className="flex gap-x-3 mt-10"> */}

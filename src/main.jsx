@@ -15,6 +15,7 @@ import DetailProductPage from "./views/pages/detailProduct";
 import { Provider } from "react-redux"; // PROVIDER REACT REDUX
 import store from "./redux/store"; // STORE REACT REDUX
 import Navbar from "./views/component/organisms/Navbar";
+import DarkModeContextProvider from "./contexts/DarkMode";
 
 // MENDEFINISIKAN ROUTER
 const router = createBrowserRouter([
@@ -51,8 +52,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* Redux */}
     <Provider store={store}>
       {/* <Navbar /> */}
-      {/* Menampilkan halaman sesuai dengan path yang di akases */}
-      <RouterProvider router={router} />
+      <DarkModeContextProvider>
+        {/* Menampilkan halaman sesuai dengan path yang di akases */}
+        <RouterProvider router={router} />
+      </DarkModeContextProvider>
     </Provider>
     {/* <App /> */}
   </React.StrictMode>
